@@ -1,0 +1,33 @@
+app:
+  name: my-nginx
+  labels: nginx
+  container:
+    name: nginx
+    image: nginx
+    port: 80
+
+
+service:
+  name: my-nginx-svc
+  type: ClusterIP
+  port: 80
+
+ingress:
+  name: my-ingress
+  annotations:
+    kubernetes.io/ingress.class: alb
+    alb.ingress.kubernetes.io/scheme: internet-facing
+    alb.ingress.kubernetes.io/target-type: ip  
+  rules:
+    http:
+      paths:
+        path: /
+        pathType: Prefix
+        backend:
+            service:
+              name: "my-nginx-svc"
+              port: 80
+
+
+  
+

@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.red.name }}
+  labels:
+    app: {{ .Values.red.label }}
+spec:
+  selector:
+    matchLabels:
+      app: {{ .Values.red.label }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.red.label }}
+    spec:
+      containers:
+        - name: {{ .Values.red.container.name }}
+          image: {{ .Values.red.container.image }}  
+          resources: 
+            limits:
+              memory:
+              cpu: 
+          ports:
+            - containerPort: {{ .Values.red.container.port }}

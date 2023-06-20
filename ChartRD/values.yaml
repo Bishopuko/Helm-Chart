@@ -1,0 +1,16 @@
+red:
+  name: redis-deployment
+  labels: redis
+  container:
+    name: redis-container
+    image: redis
+    port: 6379
+
+
+service:
+  name: redis-cluster
+  type: ClusterIP
+  port: 6379
+ 
+
+
